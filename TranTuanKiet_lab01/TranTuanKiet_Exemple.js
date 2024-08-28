@@ -65,7 +65,7 @@ Array.prototype.myReduce = function(callbackReduce, initialValue) {
     }
     return acc;
 }
-let reduce = [1, 2, 3, 4, 5].myReduce((acc, el) => acc + el, 0);
+let reduce = [1, 2, 3, 4, 5].myReduce((acc, el) => acc * el, 1);
 console.log(reduce);
 
 

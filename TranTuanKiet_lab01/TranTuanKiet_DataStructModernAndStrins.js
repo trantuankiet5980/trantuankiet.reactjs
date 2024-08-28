@@ -63,3 +63,26 @@ const game = {
     team1 > team2 && console.log('Team 2 is more likely to win');
 
 
+//Challenge#2
+//1
+for (const [i, player] of game.scored.entries()) {
+    console.log(`Goal ${i + 1}: ${player}`);
+}
+//2
+let sum = 0;
+for (const odd of Object.values(game.odds)) {
+    sum += odd;
+}
+console.log(sum / Object.values(game.odds).length);
+//3
+const odds = Object.entries(game.odds);
+for (const [team, odd] of odds) {
+    const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+    console.log(`Odd of ${teamStr}: ${odd}`);
+}
+//4
+const scorers = {};
+for (const player of game.scored) {
+    scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+console.log(scorers);
