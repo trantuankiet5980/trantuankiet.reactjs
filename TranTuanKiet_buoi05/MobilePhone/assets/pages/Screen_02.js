@@ -3,14 +3,23 @@ import { View, Text, Image, TouchableOpacity, Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 export default function Screen_02({ navigation }) {
   const images = [
-    { id: 1, uri: require("../vs_blue.png"), color: "xanh", provide: "Tiki Tradding", price: "1.790.000 đ" },
-    { id: 2, uri: require("../vs_silver.png"), color: "bạc", provide: "Shopee Tradding", price: "2.790.000 đ" },
-    { id: 3, uri: require("../vs_red.png"), color: "đỏ", provide: "Lazada Tradding", price: "3.790.000 đ" },
-    { id: 4, uri: require("../vs_black.png"), color: "đen", provide: "KKK Tradding", price: "4.790.000 đ" },
+    { id: 1, uri: require("../vs_silver.png"), color: "xanh", provide: "Tiki Tradding", price: "1.790.000 đ" },
+    { id: 2, uri: require("../vs_red.png"), color: "bạc", provide: "Shopee Tradding", price: "2.790.000 đ" },
+    { id: 3, uri: require("../vs_black.png"), color: "đỏ", provide: "Lazada Tradding", price: "3.790.000 đ" },
+    { id: 4, uri: require("../vs_blue.png"), color: "đen", provide: "KKK Tradding", price: "4.790.000 đ" },
   ];
   const [imgIndex, setImgIndex] = useState(images[0]);
   const changeImage = (index) => {
     setImgIndex(images[index]); 
+  };
+  const handleFinish = () => {
+    navigation.navigate('Screen_03', {
+      selectedData: {
+        uri: imgIndex.uri,
+        color: imgIndex.color,
+        provide: imgIndex.provide,
+        price: imgIndex.price,
+    }});
   };
   return (
     <SafeAreaView style={{flex:1}}>
@@ -33,7 +42,7 @@ export default function Screen_02({ navigation }) {
             <TouchableOpacity style={{backgroundColor: '#234896', width: 100, height: 100, margin: 10}} onPress={() => changeImage(3)}></TouchableOpacity>
           </View>
         </View>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={{backgroundColor: '#1952E294', padding: 10, alignItems: 'center', margin: 10, borderRadius: 10}}>
+        <TouchableOpacity onPress={handleFinish} style={{backgroundColor: '#1952E294', padding: 10, alignItems: 'center', margin: 10, borderRadius: 10}}>
           <Text style={{color: '#fff'}}>XONG</Text>
         </TouchableOpacity>
       </View>
