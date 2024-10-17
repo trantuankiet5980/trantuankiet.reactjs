@@ -9,12 +9,15 @@ export default function Screen_02({ navigation, route }) {
     navigation.navigate("Screen_03", {user, item:null});
   }
   const [note, setNote] = useState([]);
+  const [search, setSearch] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
 
   const fetchApi = () => {
     return fetch("https://64571b781a4c152cf97b4a06.mockapi.io/kiet")
       .then((response) => response.json())
       .then((data) => {
         setNote(data);
+        setSearchResult(data);
       })
       .catch((error) => {
         console.error(error);
@@ -35,6 +38,14 @@ export default function Screen_02({ navigation, route }) {
     fetchApi();
   }, [refresh]);
 
+  const handleSearch = (text) => {
+    setSearch(text);
+    const filteredData = note.filter((item) => {
+      return item.title.toLowerCase().includes(text.toLowerCase());
+    });
+    setSearchResult(filteredData);
+  }
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1,flexDirection: 'row', justifyContent: 'space-between', margin: 10}}>
@@ -51,11 +62,11 @@ export default function Screen_02({ navigation, route }) {
       </View>
         <View style={{flexDirection: 'row', borderWidth: 1, margin: 20, marginTop: -100, padding: 10, borderRadius: 5}}>
             <Image source={require("../../mingcute_search-fill.png")} />
-            <TextInput placeholder="Search"/>
+            <TextInput value={search} onChangeText={handleSearch} placeholder="Search"/>
         </View>
       <FlatList
       style={{margin: 20, height: 400}}
-        data={note}
+        data={searchResult}
         renderItem={({ item }) => {
           return (
             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#d4d5da', padding: 10, marginBottom: 10, borderRadius: 20}}>
