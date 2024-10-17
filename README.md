@@ -10,4 +10,5 @@
 5. Icon: npm install react-native-vector-icons
 6. Storage: npm i @react-native-async-storage/async-storage
 7. API
-	7.1 axios: 
+	7.1 axios: npm install axios
+8. Web upload ảnh: imagevenue.com
