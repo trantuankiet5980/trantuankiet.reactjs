@@ -9,3 +9,5 @@
 	       		4.2.1. Đổi trang từ 1 trang: npm install react-native-tab-view
 5. Icon: npm install react-native-vector-icons
 6. Storage: npm i @react-native-async-storage/async-storage
+7. API
+	7.1 axios: 

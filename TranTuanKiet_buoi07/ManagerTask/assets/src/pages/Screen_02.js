@@ -4,9 +4,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
 
 export default function Screen_02({ navigation, route }) {
-  const { user } = route.params;
+  const { user, refresh } = route.params;
   const setUser = () => {
-    navigation.navigate("Screen_03", {user});
+    navigation.navigate("Screen_03", {user, item:null});
   }
   const [note, setNote] = useState([]);
 
@@ -20,10 +20,20 @@ export default function Screen_02({ navigation, route }) {
         console.error(error);
       });
   };
+    // const fetchApi = async () =>{
+    //     try {
+    //         const response = await fetch('https://64571b781a4c152cf97b4a06.mockapi.io/kiet')
+    //         const data = await response.json()
+    //         setNote(data)
+    //     } catch (error) {
+    //         console.log(error);
+            
+    //     }
+    // }
 
   useEffect(() => {
     fetchApi();
-  });
+  }, [refresh]);
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -51,7 +61,7 @@ export default function Screen_02({ navigation, route }) {
             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#d4d5da', padding: 10, marginBottom: 10, borderRadius: 20}}>
               <Image style={{marginLeft: 10}} source={require('../../mdi_marker-tick.png')}/>
               <Text>{item.title}</Text>
-              <TouchableOpacity style={{marginRight: 10}} >
+              <TouchableOpacity onPress={() => navigation.navigate('Screen_03', {user, item})} style={{marginRight: 10}} >
                 <Image source={require('../../iconamoon_edit-bold.png')}/>
               </TouchableOpacity>
             </View>
