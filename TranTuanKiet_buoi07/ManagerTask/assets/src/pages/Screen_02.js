@@ -65,7 +65,7 @@ export default function Screen_02({ navigation, route }) {
             <TextInput value={search} onChangeText={handleSearch} placeholder="Search"/>
         </View>
       <FlatList
-      style={{margin: 20, height: 400}}
+        style={{margin: 20, height: 400}}
         data={searchResult}
         renderItem={({ item }) => {
           return (
