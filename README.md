@@ -12,4 +12,4 @@
 7. API
 	7.1 axios: npm install axios
 8. Web upload ảnh: imagevenue.com
-9. 
+9. code
