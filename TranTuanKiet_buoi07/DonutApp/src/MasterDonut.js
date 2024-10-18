@@ -1,7 +1,7 @@
 import { View, Text, TextInput, FlatList, TouchableOpacity, Image} from "react-native";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-const MasterDonut = () => {
+const MasterDonut = ({navigation}) => {
     const [donut, setDonut] = useState([])
     const [uniqueDonuts, setUniqueDonuts] = useState([]);
     const [selectedtype, setSelectedType] = useState(null);
@@ -70,13 +70,13 @@ const MasterDonut = () => {
                 renderItem={({item}) => {
                     return (
                         <View style={{flex: 1,borderWidth: 1, borderRadius: 10, marginTop: 20, flexDirection:'row', backgroundColor: '#F4DDDD'}}>
-                            <Image source={require('../assets/donut_red 1.png')}/>
+                            <Image source={{uri: item.img}} style={{width: 100, height: 100}}/>
                             <View style={{justifyContent: 'space-around', marginLeft: 10}}>
                                 <Text style={{fontSize: 20, fontWeight: 'bold'}}>{item.name}</Text>
                                 <Text style={{fontWeight: '200'}}>Spicy tasty donut family</Text>
                                 <View style={{flexDirection: 'row'}}>
                                     <Text style={{fontSize: 20, fontWeight: 'bold'}}>${item.price}.00</Text>
-                                    <TouchableOpacity style={{marginLeft: 175, marginTop: 15,borderBottomRightRadius: 10, borderTopLeftRadius: 50, borderBottomLeftRadius: 10, borderTopRightRadius: 10, backgroundColor: '#F1B000', width: 30, height: 30, justifyContent: 'center', alignItems: 'center'}}>
+                                    <TouchableOpacity onPress={()=> navigation.navigate('DetailDonut', {donut: item})} style={{marginLeft: 175, marginTop: 15,borderBottomRightRadius: 10, borderTopLeftRadius: 50, borderBottomLeftRadius: 10, borderTopRightRadius: 10, backgroundColor: '#F1B000', width: 30, height: 30, justifyContent: 'center', alignItems: 'center'}}>
                                         <Text>+</Text>
                                     </TouchableOpacity>
                                 </View>
