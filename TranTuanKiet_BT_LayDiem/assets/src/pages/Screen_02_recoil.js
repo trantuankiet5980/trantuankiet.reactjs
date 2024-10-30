@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, FlatList, Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRecoilState } from 'recoil';
-import { userState } from '../recoil/atoms';
+import { userState } from '../recoil/atoms'; // Adjust the import path as necessary
 import axios from 'axios';
 
 export default function Screen_02({ navigation, route }) {
