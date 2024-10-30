@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNotesStart, searchNotes } from '../reducers/notesReducer';
+import { loadNotes, filterNotes } from '../slices/notesSlice';
 import { FlatList, Text, View, Image, TouchableOpacity, TextInput } from "react-native";
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -13,7 +14,8 @@ export default function Screen_02({ navigation, route }) {
   // Fetch notes when the screen is focused
   useFocusEffect(
     useCallback(() => {
-      dispatch(fetchNotesStart());
+       dispatch(fetchNotesStart());
+      // dispatch(loadNotes());
     }, [dispatch])
   );
 
