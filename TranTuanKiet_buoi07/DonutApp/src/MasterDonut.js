@@ -1,6 +1,18 @@
 import { View, Text, TextInput, FlatList, TouchableOpacity, Image} from "react-native";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+const imageMapping = {
+    "1":  require('../assets/donut_red.png'),
+    "2":  require('../assets/donut_red.png'),
+    "3":  require('../assets/donut_red.png'),
+    "4":  require('../assets/donut_red.png'),
+    "5":  require('../assets/donut_red.png'),
+    "6":  require('../assets/donut_red.png'),
+    "7":  require('../assets/donut_red.png'),
+    "8":  require('../assets/donut_red.png'),
+}
+
 const MasterDonut = ({navigation}) => {
     const [donut, setDonut] = useState([])
     const [uniqueDonuts, setUniqueDonuts] = useState([]);
@@ -47,6 +59,7 @@ const MasterDonut = ({navigation}) => {
     
     return(
         <SafeAreaView style={{flex: 1, margin:10}}>
+           
             <View>
                 <Text style={{fontSize: 18, fontWeight: '300'}}>Welcome, Kiệt!</Text>
                 <Text style={{fontSize: 20, fontWeight: '800'}}>Choice you Best food</Text>
@@ -70,7 +83,7 @@ const MasterDonut = ({navigation}) => {
                 renderItem={({item}) => {
                     return (
                         <View style={{flex: 1,borderWidth: 1, borderRadius: 10, marginTop: 20, flexDirection:'row', backgroundColor: '#F4DDDD'}}>
-                            <Image source={{uri: item.img}} style={{width: 100, height: 100}}/>
+                            <Image source={imageMapping[item.id]} style={{width: 100, height: 100}}/>
                             <View style={{justifyContent: 'space-around', marginLeft: 10}}>
                                 <Text style={{fontSize: 20, fontWeight: 'bold'}}>{item.name}</Text>
                                 <Text style={{fontWeight: '200'}}>Spicy tasty donut family</Text>
