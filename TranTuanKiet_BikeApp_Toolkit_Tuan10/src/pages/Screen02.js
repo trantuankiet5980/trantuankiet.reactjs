@@ -25,8 +25,14 @@ export default function Screen02({ navigation }) {
 
     return (
         <SafeAreaView style={{ flex: 1, margin: 10}}>
-            <Text style={{ fontSize: 25, fontWeight: 'bold', color: 'red' }}>The world's Best Bike</Text>
-            <View style={{ marginTop: 30, marginBottom: 20 }}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                <Text style={{ fontSize: 25, fontWeight: 'bold', color: 'red' }}>The world's Best Bike</Text>
+                <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.navigate('Screen01')}>
+                    <IconAntDesign name="arrowleft" size={20} color="black" />
+                    <Text style={{color: 'black', fontSize: 15, fontWeight: 'bold'}}>Go Back</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={{ marginTop: 20, marginBottom: 20 }}>
                 <FlatList 
                     data={[{category: 'All'}, ...Array.from(new Set(data.map(item => item.category))).map(category => ({category}))]}
                     keyExtractor={(item, index) => index.toString()}
@@ -49,7 +55,7 @@ export default function Screen02({ navigation }) {
                     )}
                 />
             </View>
-            <View style={{ paddingBottom: 180}}>
+            <View style={{ paddingBottom: 130}}>
                 <FlatList 
                     data={filteredData}
                     keyExtractor={(item) => item.id}
@@ -66,21 +72,7 @@ export default function Screen02({ navigation }) {
                     numColumns={2}
                 />
             </View>
-            <View style={{position: 'absolute', bottom: 0, width: '100%', alignItems: 'center'}}>
-                <TouchableOpacity 
-                    onPress={() => navigation.navigate('Admin')} 
-                    style={{
-                        backgroundColor: 'purple', 
-                        borderRadius: 10, 
-                        width: 150, 
-                        height: 30, 
-                        justifyContent: 'center', 
-                        alignItems: 'center'
-                    }}
-                >
-                    <Text style={{color: 'white', fontSize: 15, fontWeight: 'bold'}}>Go to Admin</Text>
-                </TouchableOpacity>
-            </View>
+           
         </SafeAreaView>
     );
 }

@@ -17,6 +17,9 @@ export default function Screen01({ navigation }) {
             <TouchableOpacity style={{ marginTop: 20, padding: 15, backgroundColor: 'purple', borderRadius: 10, width: '80%' }} onPress={() => navigation.navigate('Screen02')}>
                 <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}>Get Started</Text>
             </TouchableOpacity>
+            <TouchableOpacity style={{ marginTop: 20, padding: 15, backgroundColor: 'purple', borderRadius: 10, width: '80%' }} onPress={() => navigation.navigate('Admin')}>
+                <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}>Go to Admin</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 }
