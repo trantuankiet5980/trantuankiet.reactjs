@@ -18,7 +18,7 @@ export default function Admin({ navigation }) {
             
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
                 <TouchableOpacity style={{backgroundColor: 'purple', borderRadius: 10, width: 50, height: 50, justifyContent: 'center', alignItems: 'center', borderRadius: 50}} onPress={() => navigation.navigate('EditBike')}>
-                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>+</Text>
+                    <Text style={{fontSize: 20, fontWeight: 'bold', color: 'white'}}>+</Text>
                 </TouchableOpacity>
             </View>
 
