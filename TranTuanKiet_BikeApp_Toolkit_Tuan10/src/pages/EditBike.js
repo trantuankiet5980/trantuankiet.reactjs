@@ -41,6 +41,53 @@ export default function EditBike({ navigation, route }) {
         }));
     };
 
+    const handleSave = async () => {
+        try {
+            let url = 'https://64571b781a4c152cf97b4a06.mockapi.io/bike';
+            let method = 'POST';
+            let body = { ...formData };
+
+            if (route.params?.bike) {
+                url = `${url}/${route.params.bike.id}`;
+                method = 'PUT';
+            } else {
+                const timestamp = new Date().getTime();
+                const randomSuffix = Math.floor(Math.random() * 1000);
+                body.id = `${timestamp}${randomSuffix}`;
+                
+                try {
+                    const response = await fetch(url);
+                    if (response.ok) {
+                        const existingBikes = await response.json();
+                        if (Array.isArray(existingBikes) && existingBikes.length > 0) {
+                            const maxId = Math.max(...existingBikes.map(bike => parseInt(bike.id)), 0);
+                            body.id = (maxId + 1).toString();
+                        }
+                    }
+                } catch (error) {
+                    console.log('Using fallback ID generation due to fetch error');
+                }
+            }
+            
+            const response = await fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body)
+            });
+
+            if (response.ok) {
+                dispatch(fetchBikes());
+                navigation.navigate('Admin');
+            } else {
+                console.error('Failed to save bike');
+            }
+        } catch (error) {
+            console.error('Error saving bike:', error);
+        }
+    };
+
     return (
         <SafeAreaView style={{flex: 1}}>
             <View style={{alignItems: 'center'}}>
@@ -151,6 +198,7 @@ export default function EditBike({ navigation, route }) {
                         borderRadius: 5,
                         alignItems: 'center'
                     }}
+                    onPress={handleSave}
                 >
                     <Text style={{color: 'white', fontSize: 16, fontWeight: 'bold'}}>Save Bike</Text>
                 </TouchableOpacity>
